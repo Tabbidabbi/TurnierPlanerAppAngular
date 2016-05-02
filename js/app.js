@@ -16,7 +16,17 @@ app.config(function($routeProvider){
 
 });
 
+app.config(function($routeProvider){
+    $routeProvider
+        .when('/createTournament_view', {
+            templateUrl: 'views/createTournament_view.html',
+            controller: 'CreateTournamentViewController'
+        })
+        .otherwise({
+            redirectTo: '/'
+        });
 
+});
 
 
 app.controller('HomeViewController', ['$scope', function($scope) {
