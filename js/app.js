@@ -28,6 +28,17 @@ app.config(function($routeProvider){
 
 });
 
+app.config(function($routeProvider){
+    $routeProvider
+        .when('/myTournaments_view', {
+            templateUrl: 'views/myTournaments_view.html',
+            controller: 'MyTournamentsViewController'
+        })
+        .otherwise({
+            redirectTo: '/'
+        });
+
+});
 
 app.controller('HomeViewController', ['$scope', function($scope) {
 
