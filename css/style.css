@@ -1,3 +1,7 @@
 .navbar-fixed-top {
     height: 70px; /* Whatever you want. */
 }
+
+.myTable tbody tr td:first-child{
+    font-weight: bold;
+}
