@@ -1,0 +1,31 @@
+<div  class="col-md-8 col-md-offset-1">
+    <h2>Einloggen:</h2>
+    <form name="myForm" class="form-horizontal col-md-offset-2" role="form">
+        <div class="form-group" >
+            <label class="control-label col-sm-3" for="email">Email:</label>
+            <div class="col-sm-6">
+                <input type="email" name="myEmail"ng-model="email" class="form-control" id="email" placeholder="someone@example.de">
+                <span class="bg-danger" ng-show="myForm.myEmail.$error.email">Keine gueltige E-Mail!</span>
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="pwd">Passwort:</label>
+            <div class="col-sm-6">
+                <input type="password" class="form-control" id="pwd" placeholder="Enter password">
+            </div>
+        </div>
+
+
+
+
+        <div class="form-group">
+            <div class="col-sm-9">
+                <button type="submit" class="btn btn-default pull-right" >Login</button>
+            </div>
+        </div>
+
+
+
+    </form>
+</div>

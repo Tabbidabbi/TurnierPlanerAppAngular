@@ -29,6 +29,18 @@ app.config(function($routeProvider){
 
 app.config(function($routeProvider){
     $routeProvider
+        .when('/login_view', {
+            templateUrl: 'views/login_view.html',
+            controller: 'LoginViewController'
+        })
+        .otherwise({
+            redirectTo: '/'
+        });
+
+});
+
+app.config(function($routeProvider){
+    $routeProvider
         .when('/myTournaments_view', {
             templateUrl: 'views/myTournaments_view.html',
             controller: 'MyTournamentsController'
