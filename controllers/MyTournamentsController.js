@@ -13,14 +13,18 @@ app.config(function($routeProvider){
         });
 });
 
-app.controller('CreateTournamentController', ['$scope', function($scope) {
-    $scope.saveNewTournament=function(){
-        /* while compiling form , angular created this object*/
-        var data=$scope.fields;
-        /* post to server*/
-        //$http.post(url, data);
-        console.log(data);
+app.controller('MyTournamentsController', ['$scope', function($scope) {
 
-    }
+    $scope.tournaments = [
+        {id:1, name: "Test1", tournamentStatus: "out" },
+        {id:2, name: "Mein Test2", tournamentStatus: "inactive" },
+        {id:3, name: "Test3", tournamentStatus: "active" }
+    ]
+        $scope.saved = localStorage.getItem('tournamentData');
+        $scope.savedtournaments = (localStorage.getItem('tournamentData') !== null) ? JSON.parse($scope.saved) : [{}];
+        $scope.tournaments.push(JSON.stringify( $scope.savedtournaments));
+        console.log( $scope.tournaments);
 
 }]);
+
+

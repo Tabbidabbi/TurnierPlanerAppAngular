@@ -15,7 +15,7 @@ app.config(function($routeProvider){
         })
         .when('/login_view', {
             templateUrl: 'views/login_view.html',
-            controller: 'LoginViewController'
+            //controller: 'LoginViewController'
         })
         .when('/myTournaments_view', {
             templateUrl: 'views/myTournaments_view.html',
@@ -42,16 +42,6 @@ app.controller('RegisterViewController', ['$scope', function($scope) {
         {name:"Volker", age:"40", gender:"male"},
         {name:"Wiebke", age:"22", gender:"female"},
         {name:"Heidi", age:"35", gender:"female"}
-    ]
-
-}]);
-
-app.controller('MyTournamentsController', ['$scope', function($scope) {
-
-    $scope.tournaments = [
-        {id:1, name: "Test1", tournamentStatus: "out" },
-        {id:2, name: "Mein Test2", tournamentStatus: "inactive" },
-        {id:3, name: "Test3", tournamentStatus: "active" }
     ]
 
 }]);
