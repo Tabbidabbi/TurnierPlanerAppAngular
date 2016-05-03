@@ -13,15 +13,3 @@ app.config(function($routeProvider){
             redirectTo: '/'
         });
 });
-
-app.controller('CreateTournamentController', ['$scope', function($scope) {
-    $scope.saveNewTournament=function(){
-        /* while compiling form , angular created this object*/
-        var data=$scope.fields;
-        /* post to server*/
-        //$http.post(url, data);
-        console.log(data);
-
-    }
-
-}]);
