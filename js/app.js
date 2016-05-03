@@ -8,39 +8,15 @@ app.config(function($routeProvider){
         .when('/register_view', {
         templateUrl: 'views/register_view.html',
         controller: 'RegisterViewController'
-    })
-        .otherwise({
-        redirectTo: '/'
-    });
-
-});
-
-app.config(function($routeProvider){
-    $routeProvider
+        })
         .when('/createTournament_view', {
             templateUrl: 'views/createTournament_view.html',
             controller: 'CreateTournamentController'
         })
-        .otherwise({
-            redirectTo: '/'
-        });
-
-});
-
-app.config(function($routeProvider){
-    $routeProvider
         .when('/login_view', {
             templateUrl: 'views/login_view.html',
             controller: 'LoginViewController'
         })
-        .otherwise({
-            redirectTo: '/'
-        });
-
-});
-
-app.config(function($routeProvider){
-    $routeProvider
         .when('/myTournaments_view', {
             templateUrl: 'views/myTournaments_view.html',
             controller: 'MyTournamentsController'
@@ -54,12 +30,7 @@ app.config(function($routeProvider){
 
 
 app.controller('HomeViewController', ['$scope', function($scope) {
-
-
     $scope.appTitle = "Turnier Planer App";
-
-
-
 
 }]);
 
@@ -85,14 +56,3 @@ app.controller('MyTournamentsController', ['$scope', function($scope) {
 
 }]);
 
-app.controller('CreateTournamentController', ['$scope', function($scope) {
-    $scope.saveNewTournament=function(){
-        /* while compiling form , angular created this object*/
-        var data=$scope.fields;
-        /* post to server*/
-        //$http.post(url, data);
-       console.log(data);
-
-    }
-
-}]);
