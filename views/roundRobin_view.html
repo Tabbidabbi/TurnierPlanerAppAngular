@@ -1,6 +1,6 @@
 <div class="col-md-9 col-md-offset-1">
-    <h2>Turnier Nr. xxxx </h2>
-    <form class="form-horizontal col-md-offset-2" role="form">
+    <h2>Turnier: {{currentTournament.name}}</h2>
+    <form class="form-horizontal col-md-offset-2" ng-init="initData()" role="form">
         <div class="form-group">
 
             <table class="table table-hover myTable">
@@ -16,8 +16,8 @@
                 </thead>
 
                 <tbody>
-                <tr>
-                    <td>Team 1 </td>
+                <tr ng-repeat="teams in currentTournament.teams" >
+                    <td ng-repeat="team in teams">{{team.teamname}}</td>
                     <td></td>
                     <td class="text-center"> 1:0 </td>
                     <td class="text-center"> 2:1 </td>
@@ -25,7 +25,7 @@
                     <td class="text-center"> 1st </td>
                 </tr>
 
-                <tr>>
+                <!--<tr>>
                     <td>Team 2 </td>
                     <td class="text-center"> 0:1 </td>
                     <td class="text-center">  </td>
@@ -41,7 +41,7 @@
                     <td class="text-center">  </td>
                     <td class="text-center"> 2:0 <br/>(1:6)</td>
                     <td class="text-center"> 3st </td>
-                </tr>
+                </tr>-->
                 </tbody>
 
             </table>

@@ -6,6 +6,7 @@ var app = angular.module('turnierPlanerApp', ['ngRoute']);
 app.config(function($routeProvider){
     $routeProvider
         .when('/register_view', {
+
         templateUrl: 'views/register_view.html',
         controller: 'RegisterViewController'
         })
@@ -21,12 +22,14 @@ app.config(function($routeProvider){
             templateUrl: 'views/myTournaments_view.html',
             controller: 'MyTournamentsController'
         })
+        .when('/roundRobin_view/:tournamentId', {
+            templateUrl: 'views/roundRobin_view.html',
+            controller: 'RoundRobinController'
+        })
         .otherwise({
             redirectTo: '/'
         });
-
 });
-
 
 
 app.controller('HomeViewController', ['$scope', function($scope) {
@@ -42,16 +45,6 @@ app.controller('RegisterViewController', ['$scope', function($scope) {
         {name:"Volker", age:"40", gender:"male"},
         {name:"Wiebke", age:"22", gender:"female"},
         {name:"Heidi", age:"35", gender:"female"}
-    ]
-
-}]);
-
-app.controller('MyTournamentsController', ['$scope', function($scope) {
-
-    $scope.tournaments = [
-        {id:1, name: "Test1", tournamentStatus: "out" },
-        {id:2, name: "Mein Test2", tournamentStatus: "inactive" },
-        {id:3, name: "Test3", tournamentStatus: "active" }
     ]
 
 }]);
