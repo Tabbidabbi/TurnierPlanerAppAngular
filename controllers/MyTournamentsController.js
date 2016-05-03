@@ -4,6 +4,7 @@
 
 app.config(function($routeProvider){
     $routeProvider
+
         .when('/roundRobin_view', {
             templateUrl: 'views/roundRobin_view.html',
             controller: 'RoundRobinController'

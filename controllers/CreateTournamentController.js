@@ -4,6 +4,7 @@
 
 app.controller('CreateTournamentController', ['$scope', function($scope) {
 
+
     $scope.saveNewTournament  = function () {
             $scope.saved = localStorage.getItem('tournamentData');
             $scope.tournaments = (localStorage.getItem('tournamentData') !== null) ? JSON.parse($scope.saved) : [{}] ;
@@ -20,7 +21,7 @@ app.controller('CreateTournamentController', ['$scope', function($scope) {
             })*/
 
             //localStorage.setItem('tournamentData', JSON.stringify($scope.tournaments));
-            $scope.tournaments.push(JSON.stringify($scope.fields));
+            $scope.tournaments.push("{($scope.fields)}");
             localStorage.setItem('tournamentData', JSON.stringify($scope.tournaments));
             console.log("added!" + JSON.stringify($scope.tournaments));
         };
