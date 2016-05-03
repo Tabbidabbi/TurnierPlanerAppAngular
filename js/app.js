@@ -91,7 +91,8 @@ app.controller('CreateTournamentController', ['$scope', function($scope) {
         var data=$scope.fields;
         /* post to server*/
         //$http.post(url, data);
-        alert.log(data);
+       console.log(data);
+
     }
 
 }]);

@@ -2,11 +2,10 @@
     <h2>Meine Turniere</h2>
     <form class="form-horizontal col-md-offset-2" role="form">
         <div class="form-group">
-
         <table class="table table-hover">
             <thead>
             <tr>
-                <th class="text-center">#</th>
+                <th class="text-center"></th>
                 <th >Name</th>
                 <th class="text-center">Ansehen</th>
                 <th class="text-center">Bearbeiten</th>
@@ -20,7 +19,8 @@
 
                 <td>{{$index+1}}</td>
                 <td>{{tournament.name}}</td>
-                <td class="text-center"><a href="#/roundRobin_view/{{tournament.id}}"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+               <!-- <td class="text-center"><a href="#/roundRobin_view/{{tournament.id}}"><span class="glyphicon glyphicon-eye-open"></span></a></td>-->
+                <td class="text-center"><a href="#/roundRobin_view"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                 <td class="text-center" ><button class="btn-link"><span class="glyphicon glyphicon-edit"></span></button></td>
                 <td class="text-center"><button class="btn-link"><span class="glyphicon glyphicon-plus-sign"></span></button></td>
                 <td class="text-center"><button class="btn-link"><span class="glyphicon glyphicon-remove"></span></button></td>
