@@ -9,10 +9,10 @@ app.controller('CreateTournamentController', ['$scope', function($scope) {
             $scope.saved = localStorage.getItem('tournamentData');
             $scope.savedTournaments = [];
              if($scope.saved != null) {
-                 savedTournaments.push($scope.saved);
+                 $scope.savedTournaments.push($scope.saved);
              }
 
-            savedTournaments.push("\n" + JSON.stringify($scope.fields));
-            localStorage.setItem('tournamentData', savedTournaments);
+            $scope.savedTournaments.push("\n" + JSON.stringify($scope.fields));
+            localStorage.setItem('tournamentData', $scope.savedTournaments);
     };
 }]);
