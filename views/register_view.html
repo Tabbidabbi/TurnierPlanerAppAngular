@@ -4,31 +4,31 @@
         <div class="form-group">
             <label class="control-label col-sm-3" for="registerName">Name:</label>
             <div class="col-sm-6">
-                <input type="text" class="form-control" id="registerName"placeholder="Max">
+                <input type="text" class="form-control"ng-model="myUser.name"  id="registerName"placeholder="Max">
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-sm-3" for="registerNachname">Nachname:</label>
             <div class="col-sm-6">
-                <input type="text" class="form-control" id="registerNachname" placeholder="Mustermann">
+                <input type="text" class="form-control"ng-model="myUser.surname" id="registerNachname" placeholder="Mustermann">
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-sm-3" for="registerBenutzername">Benutzername:</label>
             <div class="col-sm-6">
-                <input type="text" class="form-control" id="registerBenutzername" placeholder="Mmustermann">
+                <input type="text" class="form-control" ng-model="myUser.username" id="registerBenutzername" placeholder="Mmustermann">
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-sm-3" for="registerPwd">Passwort:</label>
             <div class="col-sm-6">
-                <input type="password" class="form-control" id="registerPwd" placeholder="Passwort eingeben">
+                <input type="password" class="form-control"  ng-model="myUser.password" id="registerPwd" placeholder="Passwort eingeben">
             </div>
         </div>
         <div class="form-group" >
             <label class="control-label col-sm-3" for="registerEmail">Email:</label>
             <div class="col-sm-6">
-                <input type="email" name="registerEmail"ng-model="register.email" class="form-control" id="registerEmail" placeholder="someone@example.de" email>
+                <input type="email" name="registerEmail"ng-model="myUser.email" class="form-control" id="registerEmail" placeholder="someone@example.de" >
                 <span class="bg-danger" ng-show="registerForm.registerEmail.$error.email">Keine gueltige E-Mail!</span>
 
 
@@ -39,6 +39,11 @@
         <div class="form-group">
             <div class="col-sm-9">
                 <button type="submit" class="btn btn-default pull-right" >Registrieren</button>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-9">
+                <button type="button" class="btn btn-default pull-right" ng-click="showUser()">Test</button>
             </div>
         </div>
 
