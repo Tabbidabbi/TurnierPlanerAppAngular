@@ -33,14 +33,13 @@ app.controller('CreateTournamentController', ['$scope', function($scope) {
     };
 
     $scope.changedTeamCount = function() {
-        $scope.fields.team = [];
+        $scope.fields.teams = [];
 
        $('#teamnames').empty();
 
         for (var i = 1; i <= $scope.fields.count; i++) {
-            $scope.fields.team[i] = {teamid: i, teamname: "Team " + i};
-            console.log("team " + i + ": " + JSON.stringify($scope.fields.team[i]));
-
+            $scope.fields.teams[i] = {teamid: i, teamname: "Team " + i};
+            console.log("team " + i + ": " + JSON.stringify($scope.fields.teams[i]));
             var teamid = i;
             var teamname = "Team " + i;
             $('#teamnames').append('<div class="form-group"><label class="control-label col-sm-5" for="' + teamname + '">' + teamname + ':</label> <div class="col-sm-6"> <input type="text" class="form-control" name="team' + teamid + 'f" id="team' + teamid + '" ng-model="fields.' + teamname + '" value="' + teamname + '"> </div> </div>');

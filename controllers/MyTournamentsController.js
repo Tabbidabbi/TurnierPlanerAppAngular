@@ -2,8 +2,6 @@
  * Created by ML on 02.05.16.
  */
 
-
-
 app.controller('MyTournamentsController', ['$scope', function($scope) {
 
     var counter = 3;
