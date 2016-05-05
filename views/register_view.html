@@ -16,7 +16,7 @@
         <div class="form-group">
             <label class="control-label col-sm-3" for="registerBenutzername">Benutzername:</label>
             <div class="col-sm-6">
-                <input type="text" class="form-control" ng-model="myUser.username" id="registerBenutzername" placeholder="Mmustermann">
+                <input type="text" class="form-control" ng-model="myUser.username" value={{myUser.username}} id="registerBenutzername" placeholder="Mmustermann">
             </div>
         </div>
         <div class="form-group">
@@ -28,7 +28,7 @@
         <div class="form-group" >
             <label class="control-label col-sm-3" for="registerEmail">Email:</label>
             <div class="col-sm-6">
-                <input type="email" name="registerEmail"ng-model="myUser.email" class="form-control" id="registerEmail" placeholder="someone@example.de" >
+                <input type="email" name="registerEmail"ng-model="myUser.email" value={{myUser.email}} class="form-control" id="registerEmail" placeholder="someone@example.de" >
                 <span class="bg-danger" ng-show="registerForm.registerEmail.$error.email">Keine gueltige E-Mail!</span>
 
 
