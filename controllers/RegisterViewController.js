@@ -16,10 +16,11 @@ app.controller('RegisterViewController', ['$scope', function($scope) {
     };
     $scope.showUser = function() {
 
-        $scope.myUser = {email: ""}
-
+        $scope.myUser= [];
         $scope.loadUser = [];
+
         $scope.loadUser = JSON.parse(localStorage.getItem('userData'));
+        angular.copy($scope.loadUser,$scope.myUser);
 
 
 
