@@ -22,7 +22,7 @@
                 <td>{{tournament.name}}</td>
                <!-- <td class="text-center"><a href="#/roundRobin_view/{{tournament.id}}"><span class="glyphicon glyphicon-eye-open"></span></a></td>-->
                 <td class="text-center"><a href="#/roundRobin_view/{{$index+1}}"><span class="glyphicon glyphicon-eye-open"></span></a></td>
-                <td class="text-center" ><button class="btn-link"><span class="glyphicon glyphicon-edit"></span></button></td>
+                <td class="text-center" ><button class="btn-link" ng-click="editTournament($index)"><span class="glyphicon glyphicon-edit"></span></button></td>
                 <td class="text-center"><button class="btn-link"><span class="glyphicon glyphicon-plus-sign"></span></button></td>
                 <td class="text-center"><button class="btn-link"><span class="glyphicon glyphicon-remove"></span></button></td>
                 <td class="text-center" ng-switch-when="out">Beendet</td>

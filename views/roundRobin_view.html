@@ -1,4 +1,4 @@
-<div class="col-md-9 col-md-offset-1">
+<div class="col-md-9 col-md-offset-1" ng-controller="RoundRobinController">
     <h2>Turnier: {{currentTournament.name}}</h2>
     <form class="form-horizontal col-md-offset-2" ng-init="initData()" role="form">
         <div class="form-group">
@@ -15,9 +15,9 @@
                 </tr>
                 </thead>
 
-                <tbody>
-                <tr ng-repeat="teams in currentTournament.teams" >
-                    <td ng-repeat="team in teams">{{team.teamname}}</td>
+                <tbody ng-repeat="teams in currentTournament.teams">
+                <tr ng-repeat="team in teams" >
+                    <td>{{team.teamname}}</td>
                     <td></td>
                     <td class="text-center"> 1:0 </td>
                     <td class="text-center"> 2:1 </td>

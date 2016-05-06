@@ -10,6 +10,10 @@ app.config(function($routeProvider){
         templateUrl: 'views/register_view.html',
         controller: 'RegisterViewController'
         })
+        .when('/createTournament_view/:tournamentId', {
+            templateUrl: 'views/createTournament_view.html',
+            controller: 'CreateTournamentController'
+        })
         .when('/createTournament_view', {
             templateUrl: 'views/createTournament_view.html',
             controller: 'CreateTournamentController'
@@ -29,6 +33,10 @@ app.config(function($routeProvider){
         .when('/home_view', {
             templateUrl: 'views/home_view.html',
             controller: 'HomeViewController'
+        })
+        .when('/submitForm', {
+        templateUrl: 'views/submitForm.html',
+        controller: 'CreateTournamentController'
         })
         .otherwise({
             redirectTo: '/'
