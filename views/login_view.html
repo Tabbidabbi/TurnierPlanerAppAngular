@@ -1,18 +1,22 @@
 <div  class="col-md-8 col-md-offset-1">
     <h2>Einloggen</h2>
-    <form name="loginForm" id="loginForm" class="form-horizontal col-md-offset-2" role="form" ng-submit="checkUser()">
+    <form name="loginForm" id="loginForm" class="form-horizontal col-md-offset-2" role="form">
         <div class="form-group" >
             <label class="control-label col-sm-3" for="loginEmail">Email:</label>
-            <div class="col-sm-6">
-                <input type="email" name="loginEmail"ng-model="login.email" class="form-control" id="loginEmail" placeholder="" email >
-                <span class="bg-danger" ng-show="loginForm.loginEmail.$error.email">Keine gueltige E-Mail!</span>
+            <div class="col-sm-6"  ng-class="{ 'has-error' : loginForm.logEmail.$error.email }">
+                <input type="email" name="logEmail"ng-model="user.email" class="form-control" id="loginEmail" placeholder="someone@example.de" required >
+                <span class=" help-block" ng-show="loginForm.logEmail.$error.email">Bitte eine gueltige E-Mail eingeben.</span>
+
 
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-sm-3" for="loginPwd">Passwort:</label>
-            <div class="col-sm-6">
-                <input type="password" class="form-control" id="loginPwd" placeholder="Passwort eingeben">
+            <div class="col-sm-6" ng-class="{ 'has-error' : loginForm.logPwd.$error.minlength }" >
+                <input name="logPwd" type="password"ng-model="user.password" class="form-control" id="loginPwd" placeholder="Passwort eingeben" ng-minlength="8" required>
+                <span class=" help-block" ng-show="loginForm.logPwd.$error.minlength">Mindestens 8 Zeichen.</span>
+
+
             </div>
         </div>
 
@@ -21,7 +25,8 @@
 
         <div class="form-group">
             <div class="col-sm-9">
-                <button type="submit" class="btn btn-default pull-right" >Login</button>
+                <button ng-disabled="!user.email || !user.password" type="submit" ng-click="SignIn($event)" class="btn  btn-primary pull-right" >Login</button>
+
             </div>
         </div>
 
