@@ -20,19 +20,19 @@
             </button>
             <span class="navbar-brand"><img src="images/Fußball-Icon.png" class="brand" height="20" alt=""/>
             </span>
-            <a href="#/home_view" class="active navbar-text  " ng-controller="HomeViewController" ><strong>{{appTitle}}</strong></a>
+            <a href="#/home_view" class=" navbar-text"  ng-controller="HomeViewController" ><strong>{{appTitle}}</strong></a>
 
         </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
+        <div class="collapse navbar-collapse "  id="myNavbar" ng-controller="SetTabActiveController">
             <ul class="nav navbar-nav">
-                <li><a href="#/home_view"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-                <li><a href="#/myTournaments_view"><span class="glyphicon glyphicon-th"></span> Meine Turniere</a></li>
-                <li><a href="#/createTournament_view"><span class="glyphicon glyphicon-plus"></span> Neues Turnier</a></li>
-                <li><a href="#">Page 3</a></li>
+                <li ng-class="{activeTab:isActive('/home_view')}"><a href="#/home_view"><span  class=" glyphicon glyphicon-home"></span> Home</a></li>
+                <li ng-class="{activeTab:isActive('/myTournaments_view')}"><a href="#/myTournaments_view"><span class="glyphicon glyphicon-th"></span> Meine Turniere</a></li>
+                <li ng-class="{activeTab:isActive('/createTournament_view')}"><a href="#/createTournament_view"><span class="glyphicon glyphicon-plus"></span> Neues Turnier</a></li>
+                <li ng-class="{activeTab:isActive('/kO_view')}"><a href="#">Page 3</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#/register_view"><span class="glyphicon glyphicon-user"></span> Registrieren</a></li>
-                <li><a href="#/login_view"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                <li ng-class="{activeTab:isActive('/register_view')}"><a href="#/register_view"><span class="glyphicon glyphicon-user"></span> Registrieren</a></li>
+                <li ng-class="{activeTab:isActive('/login_view')}"><a href="#/login_view"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
             </ul>
         </div>
         <div ></div>

@@ -3,7 +3,9 @@
  */
 var app = angular.module('turnierPlanerApp', ['ngRoute','firebase']);
 
+
 app.config(function($routeProvider){
+
     $routeProvider
         .when('/register_view', {
 
@@ -12,7 +14,8 @@ app.config(function($routeProvider){
         })
         .when('/createTournament_view/:tournamentIndex', {
             templateUrl: 'views/createTournament_view.html',
-            controller: 'CreateTournamentController'
+            controller: 'CreateTournamentController',
+
         })
         .when('/welcome_view', {
             templateUrl: 'welcome_view.html',
@@ -36,7 +39,8 @@ app.config(function($routeProvider){
         })
         .when('/home_view', {
             templateUrl: 'views/home_view.html',
-            controller: 'HomeViewController'
+            controller: 'HomeViewController',
+
         })
         .when('/submitForm', {
         templateUrl: 'views/submitForm.html',
@@ -48,6 +52,11 @@ app.config(function($routeProvider){
 });
 
 
+app.controller('SetTabActiveController', function($scope, $location) {
+    $scope.isActive = function(route) {
+        return route === $location.path();
+    }
+});
 app.controller('HomeViewController', ['$scope', function($scope) {
     $scope.appTitle = "Turnier Planer App";
 
