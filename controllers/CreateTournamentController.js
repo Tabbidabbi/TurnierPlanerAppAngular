@@ -15,6 +15,8 @@ app.controller('CreateTournamentController', ['$scope', '$location', '$routePara
 
     $scope.saveNewTournament = function () {
 
+        $scope.changeTournamentResultFields();
+
         var td  = localStorage.getItem('tournamentData');
         $scope.savedTournaments = [];
         if (td[0] != null) {
@@ -52,16 +54,36 @@ app.controller('CreateTournamentController', ['$scope', '$location', '$routePara
                 name: "", tournamentId: null, count: 3, duration: 15, type: "RoundRobin", status:"inactive"
             };
             $scope.fields.teams = [{id:1, name:"Team 1"},{id:2, name:"Team 2"},{id:3, name:"Team 3"}];
-            $scope.fields.resultsRoundRobin = [
-                {id:1, opponent: 2, score: 0, result: "even"},
-                {id:1, opponent: 3, score: 0, result: "even"},
-                {id:2, opponent: 1, score: 0, result: "even"},
-                {id:2, opponent: 3, score: 0, result: "even"},
-                {id:3, opponent: 1, score: 0, result: "even"},
-                {id:3, opponent: 2, score: 0, result: "even"}];
+            $scope.fields.resultsRoundRobin = {groups:[
+                {home:1, guest: 2, score: 0, result: "even"},
+                {home:1, guest: 3, score: 0, result: "even"},
+                {home:2, guest: 1, score: 0, result: "even"},
+                {home:2, guest: 3, score: 0, result: "even"},
+                {home:3, guest: 1, score: 0, result: "even"},
+                {home:3, guest: 2, score: 0, result: "even"}]};
 
-            $scope.fields.resultsMix = [
-                {id:1, opponent: 2, score: 0, result: "even"},];
+            $scope.fields.resultsMix = {groups: [
+                {id: 1, name: "Gruppe A", teams: [
+                    {id: 1, name: "Team 1", results: {
+                        games: 0, loose: 0, even: 0, win: 0, score: 0, concede: 0, diff: 0, points: 0}},
+                    {id: 2, name: "Team 2", results: {
+                        games: 0, loose: 0, even: 0, win: 0, score: 0, concede: 0, diff: 0, points: 0}}]},
+                {id: 2, name: "Gruppe B", teams: [
+                    {id: 1, name: "Team 3", results: {
+                        games: 0, loose: 0, even: 0, win: 0, score: 0, concede: 0, diff: 0, points: 0}},
+                    {id: 2, name: "Team 4", results: {
+                        games: 0, loose: 0, even: 0, win: 0, score: 0, concede: 0, diff: 0, points: 0}}]
+                }]};
+
+            $scope.fields.resultsKO = {groups: [
+                {id:1, name: "Gruppe 1", teams: [
+                {id: 1, name: "Team 1", win: 0, loose: 0},
+                {id: 1, name: "Team 2", win: 0, loose: 0}]},
+
+                {id:1, name: "Gruppe 2", teams: [
+                    {id: 1, name: "Team 3", win: 0, loose: 0},
+                    {id: 1, name: "Team 4", win: 0, loose: 0}]}
+            ]}
 
             var i = localStorage.getItem("tournamentId");
             if (i != null) {

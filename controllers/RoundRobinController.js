@@ -5,14 +5,9 @@
 app.controller('RoundRobinController', ['$scope','$routeParams', function($scope, $routeParams) {
 
     $scope.initData = function () {
-        $scope.currentUserId = $routeParams.tournamentId-4;
-        console.log($scope.currentUserId);
-        var data = [];
-        data = JSON.parse(localStorage.getItem('tournamentData'));
-        console.log(data);
-
+        $scope.currentUserId = $routeParams.tournamentId;
+        var data = JSON.parse(localStorage.getItem('tournamentData'));
         $scope.currentTournament = data[$scope.currentUserId];
-        console.log($scope.currentTournament);
     }
 
 }]);
