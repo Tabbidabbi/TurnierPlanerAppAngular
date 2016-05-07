@@ -14,6 +14,10 @@ app.config(function($routeProvider){
             templateUrl: 'views/createTournament_view.html',
             controller: 'CreateTournamentController'
         })
+        .when('/welcome_view', {
+            templateUrl: 'welcome_view.html',
+            controller: 'WelcomeViewController'
+        })
         .when('/createTournament_view', {
             templateUrl: 'views/createTournament_view.html',
             controller: 'CreateTournamentController'
@@ -39,7 +43,7 @@ app.config(function($routeProvider){
         controller: 'CreateTournamentController'
         })
         .otherwise({
-            redirectTo: '/'
+            redirectTo: '/home_view'
         });
 });
 

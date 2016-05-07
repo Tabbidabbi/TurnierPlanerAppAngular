@@ -58,7 +58,7 @@ app.controller('LoginViewController',['$scope','$firebaseAuth','$location','Comm
 
                 console.log('Authentication successful');
                 CommonProp.setUser(user.password.email);
-                $location.path('/home_view');
+                $location.path('/welcome_view');
 
             }, function(error) {
                 //Failure callback
