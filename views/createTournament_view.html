@@ -1,13 +1,13 @@
-<div class="col-md-8 col-md-offset-1" ng-controller="CreateTournamentController" ng-init="init()">
+<div class="col-md-8 col-md-offset-1" ng-controller="CreateTournamentController">
     <h2>Neues Turnier erstellen</h2>
 
-    <form class="form-horizontal" name="newTournamentf" id="newTournamentForm" role="form"
+    <form class="form-horizontal" name="newTournamentForm" id="newTournamentForm" role="form"
           ng-submit="saveNewTournament()">
         <div class="form-group">
             <label class="control-label col-sm-5">Turnier Nr.: </label>
 
             <div class="col-sm-6">
-                <input type="text" name="tournamentIdf" class="form-control" id="tournamentId" name="tournamentf"
+                <input type="text" name="tournamentId" class="form-control" id="tournamentId"
                        ng-model="fields.tournamentId"  ng-disabled="true">
             </div>
         </div>
@@ -15,23 +15,23 @@
             <label class="control-label col-sm-5 createTour" for="tournamentName">Name des Turniers:</label>
 
             <div class="col-sm-6">
-                <input type="text" name="namef" class="form-control" ng-model="fields.name" id="tournamentName"
-                       placeholder="Mein Turnier" required ng-model-options="{ getterSetter: true }">
+                <input type="text" name="name" class="form-control" ng-model="fields.name" id="tournamentName"
+                       placeholder="Mein Turnier" required>
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-sm-5" for="gameDuration">Dauer eines Spieles (Minuten):</label>
 
             <div class="col-sm-6">
-                <input type="number" name="durationf" min="1" max="120" class="form-control" ng-model="fields.duration"
-                       id="gameDuration" placeholder="15 Minuten" required ng-model-options="{ getterSetter: true }">
+                <input type="number" name="duration" min="1" max="120" class="form-control" ng-model="fields.duration"
+                       id="gameDuration" placeholder="15 Minuten" required >
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-sm-5" for="tournamentType">Turnier Typ:</label>
 
             <div class="col-sm-6">
-                <select class="form-control" name="ttypef" ng-model="fields.type" id="tournamentType" required ng-model-options="{ getterSetter: true }">
+                <select class="form-control" name="type" ng-model="fields.type" id="tournamentType" required>
                     <option value="RoundRobin" selected>Round Robin</option>
                     <option value="Mix">Mix</option>
                     <option value="KO">KO</option>
@@ -39,35 +39,35 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label col-sm-5" for="teamcount">Anzahl der Teams:</label>
+            <label class="control-label col-sm-5" for="count">Anzahl der Teams:</label>
 
             <div class="col-sm-6">
-                <input type="number" name="countf" ng-change="changedTeamCount()" min="3" max="20" value="3"
+                <input type="number" name="count" ng-change="changedTeamCount()" min="3" max="20" value=3
                        class="form-control"
-                       ng-model="fields.count" id="teamcount" placeholder="mind. 3 Teams" required ng-model-options="{ getterSetter: true }">
+                       ng-model="fields.count" id="count" placeholder="mind. 3 Teams" >
             </div>
 
         </div>
         <hr/>
 
-        <div id="teamnames">
-        </div>
-        <!-- <div class="form-group">
-             <label class="control-label col-sm-5" for="teamNames2">Team 1:</label>
+        <div id="teamnames" name="teams" class="form-group"  >
+        <div class="form-group">
+             <label class="control-label col-sm-5" for="teamNames1">Team 1:</label>
 
              <div class="col-sm-6">
                  <input type="text" class="form-control" name="team1f" id="teamNames1" ng-model="fields.teamname"
                         placeholder="Teamname 1">
              </div>
          </div>
-         -->
-        <div class="form-group">
+</div>
+
+<div class="form-group">
             <div class="col-sm-11">
                 <a href="#/submitForm"/>
-                <button ng-init="init()" type="submit" ng-disabled="newTournamentf.namef.$error.required ||
-                newTournamentf.durationf.$error.required ||
-                newTournamentf.ttypef.$error.required ||
-                newTournamentf.countf.$error.required"
+                <button type="submit" ng-disabled="newTournamentf.name.$error.required ||
+                newTournamentf.duration.$error.required ||
+                newTournamentf.type.$error.required ||
+                newTournamentf.count.$error.required"
                         class="btn btn-default pull-right"  ng-submit="saveNewTournament()">
                     Turnier anlegen
                 </button>
