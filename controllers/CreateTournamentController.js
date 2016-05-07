@@ -15,9 +15,10 @@ app.controller('CreateTournamentController', ['$scope', '$location', '$routePara
 
     $scope.saveNewTournament = function () {
 
-        var data  = JSON.parse(localStorage.getItem('tournamentData'));
+        var td  = localStorage.getItem('tournamentData');
         $scope.savedTournaments = [];
-        if (data != null) {
+        if (td[0] != null) {
+            var data = JSON.parse(td);
             for(var n = 0; n < data.length; n++){
                 $scope.savedTournaments.push(data[n]);
             }
