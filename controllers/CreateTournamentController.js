@@ -18,6 +18,9 @@ app.controller('CreateTournamentController', ['$scope', '$location', '$routePara
         if($scope.fields.type == "RoundRobin"){
             $scope.changeTournamentRoundRobinResults();
         }
+        else if($scope.fields.type == "Mix"){
+            $scope.changeTournamentMixResults();
+        }
 
         var td = localStorage.getItem('tournamentData');
         $scope.savedTournaments = [];
@@ -39,7 +42,7 @@ app.controller('CreateTournamentController', ['$scope', '$location', '$routePara
         }
 
         localStorage.setItem('tournamentData', JSON.stringify($scope.savedTournaments));
-        $location.path('/submitForm/Gespeichert!/ Das Turnier wurde erfolgreich angelegt!');
+        $location.path('/submitForm/Gespeichert!/Das Turnier wurde erfolgreich angelegt!/myTournaments_view');
     };
 
     $scope.init = function () {
@@ -103,17 +106,37 @@ app.controller('CreateTournamentController', ['$scope', '$location', '$routePara
     };
 
     $scope.changeTournamentRoundRobinResults = function(){
-        if($scope.fields.type == "RoundRobin"){
-            $scope.fields.resultsRoundRobin = {groups:[]};
-            for (var i = 1; i <= $scope.fields.count; i++) {
-                for(var x = 1; x <= $scope.fields.count; x++) {
-                    if(i != x){
-                        $scope.fields.resultsRoundRobin.groups.push({home: i, guest: x, score: 0, result: "even"});
-                    }
+        $scope.fields.resultsRoundRobin = {groups:[]};
+        for (var i = 1; i <= $scope.fields.count; i++) {
+            for(var x = 1; x <= $scope.fields.count; x++) {
+                if(i != x){
+                    $scope.fields.resultsRoundRobin.groups.push({home: i, guest: x, score: 0, result: "even"});
                 }
             }
         }
+    };
 
+    $scope.changeTournamentMixResults = function(){
+        var teamscount = $scope.fields.count;
+        var groupscount;
+        if(teamscount % 2 != 0) {
+            teamscount++;
+        }
+        groupscount = Math.round(Math.log2(teamscount));
+
+        var teamNameCounter = 0;
+        $scope.fields.resultsMix = {groups:[]};
+            for (var i = 1; i <= groupscount; i++) {
+                    $scope.fields.resultsMix.groups.push({id: i, name: "Gruppe "+String.fromCharCode(64+i), teams: []});
+                for (var x = 1; x <= (teamscount / groupscount); x++) {
+                   if( $scope.fields.teams[teamNameCounter]!=null) {
+                       $scope.fields.resultsMix.groups[i - 1].teams.push({
+                           id: x, name: $scope.fields.teams[teamNameCounter].name, results: {
+                               games: 0, loose: 0, even: 0, win: 0, score: 0, concede: 0, diff: 0, points: 0}});
+                       teamNameCounter++;
+                   }
+                }
+            }
     };
 
     $scope.changedTeamCount = function () {

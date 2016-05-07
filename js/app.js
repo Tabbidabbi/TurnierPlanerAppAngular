@@ -42,7 +42,7 @@ app.config(function($routeProvider){
             controller: 'HomeViewController',
 
         })
-        .when('/submitForm/:alertTitle/:alertMessage', {
+        .when('/submitForm/:alertTitle/:alertMessage/:redirectAddress', {
         templateUrl: 'views/submitForm.html',
         controller: 'SubmitController'
         })
