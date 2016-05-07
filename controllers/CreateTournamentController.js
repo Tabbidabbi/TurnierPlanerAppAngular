@@ -3,11 +3,6 @@
  */
 
 app.controller('CreateTournamentController', ['$scope', '$location', '$routeParams', function ($scope, $location, $routeParams) {
-    $scope.edit = false;
-
-    if ($routeParams != null) {
-        $scope.edit = true;
-    }
 
     $scope.saveNewTournament = function () {
         $scope.successTournamentSavedMessage = "";
@@ -29,6 +24,13 @@ app.controller('CreateTournamentController', ['$scope', '$location', '$routePara
     };
 
     $scope.init = function () {
+        if ($routeParams != null) {
+            $scope.edit = true;
+        }else{
+            $scope.edit = false;
+        }
+
+
         if ($scope.edit == false) {
             var i = localStorage.getItem("tournamentId");
             if (i != null) {
@@ -41,13 +43,17 @@ app.controller('CreateTournamentController', ['$scope', '$location', '$routePara
             $scope.changedTeamCount(3);
 
             localStorage.setItem("tournamentId", $scope.tournamentIndex);
-            $scope.fields = {tournamentId: $scope.tournamentIndex};
+            $scope.fields.tournamentId =  $scope.tournamentIndex;
         }else{
             $scope.allSavedTournamentsData = JSON.parse(localStorage.getItem('tournamentData'));
 
             if ($scope.allSavedTournamentsData != null) {
-                $scope.fields = [];
-                var i = $routeParams.tournamentId;
+                $scope.fields = function(){
+                    var data = $scope.allSavedTournamentsData[$routeParams];
+                    return data;
+
+                };
+                /*var i = $routeParams.tournamentId;
                 console.log($scope.allSavedTournamentsData[i].tournamentId);
 
                 // $scope.fields = $scope.allSavedTournamentsData[i];
@@ -68,7 +74,7 @@ app.controller('CreateTournamentController', ['$scope', '$location', '$routePara
                     console.log(teams[j]);
                     var fteam =  $scope.fields.teams[j];
                     fteam = {team: teamName};
-                }
+                }*/
                 /* $scope.fields.tournamentId = $scope.allSavedTournamentsData[i].tournamentId;
                  $scope.fields.name = $scope.allSavedTournamentsData[i].name;
                  $scope.fields.count = $scope.allSavedTournamentsData[i].count;
