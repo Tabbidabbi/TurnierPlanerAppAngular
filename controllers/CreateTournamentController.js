@@ -5,14 +5,15 @@
 app.controller('CreateTournamentController', ['$scope', '$location', '$routeParams', function ($scope, $location, $routeParams) {
 
     angular.element(document).ready(function () {
+        if($routeParams.tournamentIndex != null){
+            $scope.isEditMode = true;
+        }else{
+            $scope.isEditMode = false;
+        }
         $scope.init();
     });
 
-    if($routeParams.tournamentId != null){
-        $scope.isEditMode = true;
-    }else{
-        $scope.isEditMode = false;
-    }
+
 
     $scope.saveNewTournament = function () {
         $scope.successTournamentSavedMessage = "";
@@ -31,22 +32,35 @@ app.controller('CreateTournamentController', ['$scope', '$location', '$routePara
     };
 
     $scope.init = function () {
-        $scope.fields = {name: "", torunamentId: null, count: 3, duration:15, type: "roundRobin",
-            teams: ""};
-        $scope.fields.teams = {teamid: 1, teamname: "Team 1"}, {teamid: 2, teamname: "Team 2"},{teamid: 3, teamname: "Team 3"};
+        if($scope.isEditMode) {
+            var data = localStorage.getItem('tournamentData');
+            $scope.fields = [];
+            $scope.fields = data[$routeParams.tournamentIndex];
 
+        }
+        else{
+            $scope.fields = {
+                name: "", torunamentId: null, count: 3, duration: 15, type: "roundRobin",
+                teams: ""
+            };
+            $scope.fields.teams = {teamid: 1, teamname: "Team 1"}, {teamid: 2, teamname: "Team 2"}, {
+                teamid: 3,
+                teamname: "Team 3"
+            };
+
+        }
         var i = localStorage.getItem("tournamentId");
         if (i != null) {
-            $scope.tournamentIndex = parseInt(i) + 1;
+            $scope.tournamentId = parseInt(i) + 1;
         }
         else {
-            $scope.tournamentIndex = 1000;
+            $scope.tournamentId = 1000;
         }
 
         $scope.changedTeamCount();
 
-        localStorage.setItem("tournamentId", $scope.tournamentIndex);
-        $scope.fields.tournamentId = $scope.tournamentIndex;
+        localStorage.setItem("tournamentId", $scope.tournamentId);
+        $scope.fields.tournamentId = $scope.tournamentId;
     };
 
     $scope.changedTeamCount = function () {
