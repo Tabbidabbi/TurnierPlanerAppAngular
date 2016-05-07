@@ -10,7 +10,7 @@ app.config(function($routeProvider){
         templateUrl: 'views/register_view.html',
         controller: 'RegisterViewController'
         })
-        .when('/createTournament_view/:tournamentId', {
+        .when('/createTournament_view/:tournamentIndex', {
             templateUrl: 'views/createTournament_view.html',
             controller: 'CreateTournamentController'
         })

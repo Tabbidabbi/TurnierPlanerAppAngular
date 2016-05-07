@@ -8,7 +8,7 @@ app.controller('CreateTournamentController', ['$scope', '$location', '$routePara
         $scope.successTournamentSavedMessage = "";
         $scope.successTournamentSavedTitle = "";
 
-        if ($scope.edit) {
+        if ($scope.editing == true) {
         }
         else {
             var data = localStorage.getItem('tournamentData');
@@ -24,14 +24,17 @@ app.controller('CreateTournamentController', ['$scope', '$location', '$routePara
     };
 
     $scope.init = function () {
-        if ($routeParams != null) {
-            $scope.edit = true;
+        if ($routeParams.tournamentIndex != null)  {
+            $scope.editing = true;
+            console.log($routeParams.tournamentIndex)
         }else{
-            $scope.edit = false;
+            $scope.editing = false;
+            console.log($routeParams.tournamentIndex)
+
         }
 
 
-        if ($scope.edit == false) {
+        if ($scope.editing == false) {
             var i = localStorage.getItem("tournamentId");
             if (i != null) {
                 $scope.tournamentIndex = parseInt(i) + 1;
@@ -49,7 +52,7 @@ app.controller('CreateTournamentController', ['$scope', '$location', '$routePara
 
             if ($scope.allSavedTournamentsData != null) {
                 $scope.fields = function(){
-                    var data = $scope.allSavedTournamentsData[$routeParams];
+                    var data = $scope.allSavedTournamentsData[$routeParams.tournamentIndex];
                     return data;
 
                 };
@@ -88,7 +91,7 @@ app.controller('CreateTournamentController', ['$scope', '$location', '$routePara
     };
 
     $scope.changedTeamCount = function (count) {
-        $scope.fields.teams = [];
+       // $scope.fields.teams = [];
 
         $('#teamnames').empty();
 
