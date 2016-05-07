@@ -31,7 +31,7 @@
             <label class="control-label col-sm-5" for="tournamentType">Turnier Typ:</label>
 
             <div class="col-sm-6">
-                <select class="form-control" name="type" ng-model="fields.type" id="tournamentType" required>
+                <select class="form-control" ng-change="typeChanged()" name="type" ng-model="fields.type" id="tournamentType" required>
                     <option value="RoundRobin" >Round Robin</option>
                     <option value="Mix">Mix</option>
                     <option value="KO">KO</option>

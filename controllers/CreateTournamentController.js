@@ -49,9 +49,19 @@ app.controller('CreateTournamentController', ['$scope', '$location', '$routePara
             $scope.newTournamentHeader = "Neues Turnier erstellen";
            $scope.submitBtnTxt = "Turnier anlegen";
             $scope.fields = {
-                name: "", tournamentId: null, count: 3, duration: 15, type: "RoundRobin"
+                name: "", tournamentId: null, count: 3, duration: 15, type: "RoundRobin", status:"inactive"
             };
             $scope.fields.teams = [{id:1, name:"Team 1"},{id:2, name:"Team 2"},{id:3, name:"Team 3"}];
+            $scope.fields.resultsRoundRobin = [
+                {id:1, opponent: 2, score: 0, result: "even"},
+                {id:1, opponent: 3, score: 0, result: "even"},
+                {id:2, opponent: 1, score: 0, result: "even"},
+                {id:2, opponent: 3, score: 0, result: "even"},
+                {id:3, opponent: 1, score: 0, result: "even"},
+                {id:3, opponent: 2, score: 0, result: "even"}];
+
+            $scope.fields.resultsMix = [
+                {id:1, opponent: 2, score: 0, result: "even"},];
 
             var i = localStorage.getItem("tournamentId");
             if (i != null) {
@@ -71,9 +81,18 @@ app.controller('CreateTournamentController', ['$scope', '$location', '$routePara
     $scope.changedTeamCount = function () {
         var length = $scope.fields.count,
             i;
-        if(length < 3){
-            return;
-        }
+       if($scope.fields.type != null) {
+           if ($scope.fields.type == "RoundRobin") {
+               if (length < 3) {
+                   return;
+               }
+           }
+           else{
+               if (length < 4) {
+                   return;
+               }
+           }
+       }
 
         for (i = $scope.fields.teams.length; i < $scope.fields.count; i++) {
            $scope.fields.teams.push({id: (i + 1), name: "Team " + (i + 1)});
@@ -82,5 +101,19 @@ app.controller('CreateTournamentController', ['$scope', '$location', '$routePara
         for (i = $scope.fields.teams.length; i >= $scope.fields.count; i--) {
             $scope.fields.teams.splice(i,1);
         }
+    };
+
+    $scope.typeChanged = function (){
+        if($scope.fields.type != "RoundRobin") {
+          if($scope.fields.count < 4){
+              $scope.fields.count = 4;
+              $scope.changedTeamCount();
+          }
+          $("#count").attr("placeholder", "mind. 4 Teams");
+        }
+        else{
+            $("#count").attr("placeholder", "mind. 3 Teams");
+        }
+
     }
 }]);
