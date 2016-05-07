@@ -24,12 +24,14 @@ app.controller('CreateTournamentController', ['$scope', '$location', '$routePara
 
         var td = localStorage.getItem('tournamentData');
         $scope.savedTournaments = [];
-        if (td[0] != null) {
-            var data = JSON.parse(td);
-            for(var n = 0; n < data.length; n++){
-                $scope.savedTournaments.push(data[n]);
-            }
-        }
+       if(td != null) {
+           if (td[0] != null) {
+               var data = JSON.parse(td);
+               for (var n = 0; n < data.length; n++) {
+                   $scope.savedTournaments.push(data[n]);
+               }
+           }
+       }
 
         //Vorhandene Daten überschreiben
         if($scope.isEditMode){
