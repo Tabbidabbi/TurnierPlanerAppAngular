@@ -42,9 +42,9 @@ app.config(function($routeProvider){
             controller: 'HomeViewController',
 
         })
-        .when('/submitForm', {
+        .when('/submitForm/:alertTitle/:alertMessage', {
         templateUrl: 'views/submitForm.html',
-        controller: 'CreateTournamentController'
+        controller: 'SubmitController'
         })
         .otherwise({
             redirectTo: '/home_view'

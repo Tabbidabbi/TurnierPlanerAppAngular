@@ -13,69 +13,74 @@ app.controller('CreateTournamentController', ['$scope', '$location', '$routePara
         $scope.init();
     });
 
-
-
     $scope.saveNewTournament = function () {
-        $scope.successTournamentSavedMessage = "";
-        $scope.successTournamentSavedTitle = "";
 
-        var data = localStorage.getItem('tournamentData');
+        var td  = localStorage.getItem('tournamentData');
         $scope.savedTournaments = [];
-        if (data != null) {
-            //data = data.substr(1, data.length - 2);
-            $scope.savedTournaments.push(data);
+        if (td[0] != null) {
+            var data = JSON.parse(td);
+            for(var n = 0; n < data.length; n++){
+                $scope.savedTournaments.push(data[n]);
+            }
         }
-        $scope.savedTournaments.push($scope.fields);
-        localStorage.setItem('tournamentData', JSON.stringify($scope.savedTournaments));
-        $location.path('/submitForm');
 
+        //Vorhandene Daten überschreiben
+        if($scope.isEditMode){
+            data[$routeParams.tournamentIndex] = $scope.fields;
+            $scope.savedTournaments = data;
+        }
+        //Neue Daten hinzufügen
+        else {
+            $scope.savedTournaments.push($scope.fields);
+        }
+
+        localStorage.setItem('tournamentData', JSON.stringify($scope.savedTournaments));
+        $location.path('/submitForm/Gespeichert!/ Das Turnier wurde erfolgreich angelegt!');
     };
 
     $scope.init = function () {
         if($scope.isEditMode) {
-            var data = localStorage.getItem('tournamentData');
-            $scope.fields = [];
+            var data  = JSON.parse(localStorage.getItem('tournamentData'));
             $scope.fields = data[$routeParams.tournamentIndex];
-
+            $scope.newTournamentHeader = "Turnier bearbeiten";
+            $scope.submitBtnTxt = "Speichern";
         }
         else{
+            $scope.newTournamentHeader = "Neues Turnier erstellen";
+           $scope.submitBtnTxt = "Turnier anlegen";
             $scope.fields = {
-                name: "", torunamentId: null, count: 3, duration: 15, type: "roundRobin",
-                teams: ""
+                name: "", tournamentId: null, count: 3, duration: 15, type: "RoundRobin"
             };
-            $scope.fields.teams = {teamid: 1, teamname: "Team 1"}, {teamid: 2, teamname: "Team 2"}, {
-                teamid: 3,
-                teamname: "Team 3"
-            };
+            $scope.fields.teams = [{id:1, name:"Team 1"},{id:2, name:"Team 2"},{id:3, name:"Team 3"}];
 
+            var i = localStorage.getItem("tournamentId");
+            if (i != null) {
+                $scope.tournamentId = parseInt(i) + 1;
+            }
+            else {
+                $scope.tournamentId = 1000;
+            }
+            localStorage.setItem("tournamentId", $scope.tournamentId);
+            $scope.fields.tournamentId = $scope.tournamentId;
         }
-        var i = localStorage.getItem("tournamentId");
-        if (i != null) {
-            $scope.tournamentId = parseInt(i) + 1;
-        }
-        else {
-            $scope.tournamentId = 1000;
-        }
-
         $scope.changedTeamCount();
 
-        localStorage.setItem("tournamentId", $scope.tournamentId);
-        $scope.fields.tournamentId = $scope.tournamentId;
+       $scope.$apply();
     };
 
     $scope.changedTeamCount = function () {
-
-        $('#teamnames').empty();
-
-        $scope.fields.teams = [];
-        var length = $scope.fields.count;
-
-        for (var i = 0; i < length; i++) {
-                $scope.fields.teams[i] = {teamid: (i + 1), teamname: "Team " + (i + 1)};
-                //console.log("team " + i + ": " + JSON.stringify($scope.fields.teams[i]));
-                var teamid = (i + 1);
-                var teamname = "Team " + (i + 1);
-                $('#teamnames').append('<div class="form-group"><label class="control-label col-sm-5" for="' + teamname + '">' + teamname + ':</label> <div class="col-sm-6"> <input type="text" class="form-control" name="team' + teamid + '" id="team' + teamid + '" ng-model="fields.' + teamname + '" value="' + teamname + '"> </div> </div>');
-            }
+        var length = $scope.fields.count,
+            i;
+        if(length < 3){
+            return;
         }
+
+        for (i = $scope.fields.teams.length; i < $scope.fields.count; i++) {
+           $scope.fields.teams.push({id: (i + 1), name: "Team " + (i + 1)});
+        }
+
+        for (i = $scope.fields.teams.length; i >= $scope.fields.count; i--) {
+            $scope.fields.teams.splice(i,1);
+        }
+    }
 }]);

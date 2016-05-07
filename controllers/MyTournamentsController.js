@@ -4,29 +4,30 @@
 
 app.controller('MyTournamentsController', ['$scope', '$location', function($scope, $location) {
 
-    $scope.tournaments = [
-       /* {id:1, name: "Test1", tournamentStatus: "out" },
-        {id:2, name: "Mein Test2", tournamentStatus: "inactive" },
-        {id:3, name: "Test3", tournamentStatus: "active" }*/
-    ]
+    $scope.tournaments = [];
 
     $scope.savedTournamentsData = [];
-    $scope.savedTournamentsData = JSON.parse(localStorage.getItem('tournamentData'));
+    var data = localStorage.getItem('tournamentData');
+    if (data[0] != null) {
 
-    if($scope.savedTournamentsData != null) {
-        for (var i = 0; i < $scope.savedTournamentsData.length; i++) {
-            $scope.savedTournamentsData.forEach(function (data) {
-                data.id = i;
-                data.tournamentStatus = "inactive";
-            });
+        $scope.savedTournamentsData = JSON.parse(data);
+        if ($scope.savedTournamentsData != null) {
+            for (var i = 0; i < $scope.savedTournamentsData.length; i++) {
+                $scope.savedTournamentsData.forEach(function (data) {
+                    data.id = i;
+                    data.tournamentStatus = "inactive";
+                });
 
-            $scope.tournaments.push($scope.savedTournamentsData[i]);
+                $scope.tournaments.push($scope.savedTournamentsData[i]);
+            }
         }
     }
-
     $scope.editTournament = function(index){
-
         $location.path('/createTournament_view/'+index);
+    };
 
-    }
+    $scope.deleteTournament = function(index){
+        $scope.tournaments.splice(index, 1);
+        localStorage.setItem('tournamentData', $scope.tournaments);
+    };
 }]);
