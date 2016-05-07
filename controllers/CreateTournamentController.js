@@ -26,7 +26,8 @@ app.controller('CreateTournamentController', ['$scope', '$location', '$routePara
 
         //Vorhandene Daten überschreiben
         if($scope.isEditMode){
-            data[$scope.tournamentId] = $scope.fields;
+            data[$routeParams.tournamentIndex] = $scope.fields;
+            $scope.savedTournaments = data;
         }
         //Neue Daten hinzufügen
         else {

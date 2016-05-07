@@ -7,19 +7,21 @@ app.controller('MyTournamentsController', ['$scope', '$location', function($scop
     $scope.tournaments = [];
 
     $scope.savedTournamentsData = [];
-    $scope.savedTournamentsData = JSON.parse(localStorage.getItem('tournamentData'));
+    var data = localStorage.getItem('tournamentData');
+    if (data[0] != null) {
 
-    if($scope.savedTournamentsData != null) {
-        for(var i = 0; i < $scope.savedTournamentsData.length; i++) {
-            $scope.savedTournamentsData.forEach(function (data) {
-                data.id = i;
-                data.tournamentStatus = "inactive";
-            });
+        $scope.savedTournamentsData = JSON.parse(data);
+        if ($scope.savedTournamentsData != null) {
+            for (var i = 0; i < $scope.savedTournamentsData.length; i++) {
+                $scope.savedTournamentsData.forEach(function (data) {
+                    data.id = i;
+                    data.tournamentStatus = "inactive";
+                });
 
-            $scope.tournaments.push($scope.savedTournamentsData[i]);
+                $scope.tournaments.push($scope.savedTournamentsData[i]);
+            }
         }
     }
-
     $scope.editTournament = function(index){
         $location.path('/createTournament_view/'+index);
     };
@@ -27,6 +29,5 @@ app.controller('MyTournamentsController', ['$scope', '$location', function($scop
     $scope.deleteTournament = function(index){
         $scope.tournaments.splice(index, 1);
         localStorage.setItem('tournamentData', $scope.tournaments);
-        $scope.$apply();
     };
 }]);
