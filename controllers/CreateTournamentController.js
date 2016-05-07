@@ -100,6 +100,10 @@ app.controller('CreateTournamentController', ['$scope', '$location', '$routePara
        $scope.$apply();
     };
 
+    $scope.changeTournamentResultFields = function(){
+
+    };
+
     $scope.changedTeamCount = function () {
         var length = $scope.fields.count,
             i;
