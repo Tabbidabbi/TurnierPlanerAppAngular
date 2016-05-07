@@ -1,10 +1,10 @@
-<div class="col-md-9 col-md-offset-2" ng-controller="CreateTournamentController">
+<div class="col-md-9 col-md-offset-2" ng-controller="SubmitController">
 
-    <form class="form-horizontal" name="newTournamentf" id="newTournamentForm" role="form">
+    <form class="form-horizontal" name="alertForm" id="alertForm" role="form">
         <div class="alert alert-success alert-dismissible" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <a href="/"></a><span aria-hidden="true">&times;</span></button>
-            <strong>Fertig!</strong> Turnier wurde erfolgreich gespeichert.
+            <strong>{{successTournamentSavedTitle}}!</strong> {{successTournamentSavedMessage}}
         </div>
     </form>
 </div>
