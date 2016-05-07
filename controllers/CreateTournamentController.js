@@ -33,9 +33,10 @@ app.controller('CreateTournamentController', ['$scope', '$location', '$routePara
 
     $scope.init = function () {
         if($scope.isEditMode) {
-            var data = localStorage.getItem('tournamentData');
-            $scope.fields = [];
+            var data = JSON.parse(localStorage.getItem('tournamentData'));
             $scope.fields = data[$routeParams.tournamentIndex];
+            //AKTUALISIERT DIE VIEW!
+            $scope.$apply();
 
         }
         else{
