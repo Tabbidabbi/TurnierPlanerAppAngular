@@ -15,9 +15,11 @@ app.controller('CreateTournamentController', ['$scope', '$location', '$routePara
 
     $scope.saveNewTournament = function () {
 
-        $scope.changeTournamentResultFields();
+        if($scope.fields.type == "RoundRobin"){
+            $scope.changeTournamentRoundRobinResults();
+        }
 
-        var td  = localStorage.getItem('tournamentData');
+        var td = localStorage.getItem('tournamentData');
         $scope.savedTournaments = [];
         if (td[0] != null) {
             var data = JSON.parse(td);
@@ -100,7 +102,17 @@ app.controller('CreateTournamentController', ['$scope', '$location', '$routePara
        $scope.$apply();
     };
 
-    $scope.changeTournamentResultFields = function(){
+    $scope.changeTournamentRoundRobinResults = function(){
+        if($scope.fields.type == "RoundRobin"){
+            $scope.fields.resultsRoundRobin = {groups:[]};
+            for (var i = 1; i <= $scope.fields.count; i++) {
+                for(var x = 1; x <= $scope.fields.count; x++) {
+                    if(i != x){
+                        $scope.fields.resultsRoundRobin.groups.push({home: i, guest: x, score: 0, result: "even"});
+                    }
+                }
+            }
+        }
 
     };
 
