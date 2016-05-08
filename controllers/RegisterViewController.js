@@ -73,7 +73,8 @@ app.controller("RegisterViewController", ["$scope", "Auth",'$location',
             }).then(function(userData) {
                 //$scope.message = "Benutzer erfolgreich angelegt: " + userData.uid;
                 $scope.message = "Benutzer erfolgreich angelegt!";
-                $location.path('/login_view');
+                $location.path('/submitForm/Gespeichert!/Benutzer erfolgreich angelegt!/login_view');
+
             }).catch(function(error) {
                 $scope.error = error;
             });
