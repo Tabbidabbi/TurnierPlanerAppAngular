@@ -18,7 +18,7 @@ app.config(function($routeProvider){
 
         })
         .when('/welcome_view', {
-            templateUrl: 'welcome_view.html',
+            templateUrl: 'views/welcome_view.html',
             controller: 'WelcomeViewController'
         })
         .when('/createTournament_view', {
@@ -42,6 +42,7 @@ app.config(function($routeProvider){
             controller: 'HomeViewController',
 
         })
+
         .when('/submitForm/:alertTitle/:alertMessage/:redirectAddress', {
         templateUrl: 'views/submitForm.html',
         controller: 'SubmitController'
@@ -57,8 +58,11 @@ app.controller('SetTabActiveController', function($scope, $location) {
         return route === $location.path();
     }
 });
-app.controller('HomeViewController', ['$scope', function($scope) {
+app.controller('MainController', ['$scope','$rootScope', function($scope,$rootScope) {
     $scope.appTitle = "Turnier Planer App";
+    $rootScope.isLoggedIn = false;
+
+
 
 }]);
 
@@ -73,7 +77,7 @@ app.controller('AlertCtrl', [
         $rootScope.alert = {};
     }
 ]);
-app.service('CommonProp', function() {
+app.service('CurrenUser', function() {
     var user = '';
 
     return {

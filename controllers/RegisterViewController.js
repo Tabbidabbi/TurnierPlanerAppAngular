@@ -58,8 +58,8 @@
 
 
 // and use it in our controller
-app.controller("RegisterViewController", ["$scope", "Auth",'$location',
-    function($scope, Auth,$location) {
+app.controller("RegisterViewController", ["$scope", "Auth",'$location','$timeout',
+    function($scope, Auth,$location,$timeout) {
         $scope.createUser = function() {
             $scope.message = null;
             $scope.error = null;
@@ -73,10 +73,13 @@ app.controller("RegisterViewController", ["$scope", "Auth",'$location',
             }).then(function(userData) {
                 //$scope.message = "Benutzer erfolgreich angelegt: " + userData.uid;
                 $scope.message = "Benutzer erfolgreich angelegt!";
-                $location.path('/submitForm/Gespeichert!/Benutzer erfolgreich angelegt!/login_view');
+                $location.path('/submitForm/Gespeichert/Benutzer erfolgreich angelegt!/login_view');
 
             }).catch(function(error) {
                 $scope.error = "Email wird bereits verwendet!";
+                $timeout(function() {
+                    $scope.error = "";
+                }, 4000);
             });
         };
 

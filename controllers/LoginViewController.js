@@ -38,7 +38,7 @@
 //        }
 //    }
 //]);
-app.controller('LoginViewController',['$scope','$firebaseAuth','$location','CommonProp',function($scope,$firebaseAuth,$location,CommonProp) {
+app.controller('LoginViewController',['$scope','$firebaseAuth','$location','CurrenUser','$rootScope','$timeout',function($scope,$firebaseAuth,$location,CurrenUser,$rootScope,$timeout) {
     var firebaseObj = new Firebase("https://brilliant-heat-1322.firebaseio.com");
     var loginObj = $firebaseAuth(firebaseObj);
 
@@ -57,14 +57,24 @@ app.controller('LoginViewController',['$scope','$firebaseAuth','$location','Comm
                 //Success callback
 
                 console.log('Authentication successful');
-                CommonProp.setUser(user.password.email);
-                $location.path('/submitForm/Geklappt/Sie wurden erfolgreich eingeloggt!/welcome_view');
+                $rootScope.isLoggedIn = true;
+                CurrenUser.setUser(username);
+                $location.path('/submitForm/Geklappt/Sie wurden erfolgreich angemeldet!/welcome_view');
+
 
 
             }, function(error) {
                 //Failure callback
+                $scope.error = "Email oder Passwort sind falsch!";
+                $timeout(function() {
+                    $scope.error = "";
+                }, 4000);
+
                 console.log('Authentication failure');
+
             });
+
     }
+
 }]);
 

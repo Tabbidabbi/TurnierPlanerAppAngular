@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/bootstrap.css"/>
     <link rel="stylesheet" href="css/style.css"/>
 </head>
-<body>
+<body ng-controller="MainController">
 
 <nav class="navbar navbar-default navbar-static-top " role="navigation">
 
@@ -20,7 +20,7 @@
             </button>
             <span class="navbar-brand"><img src="images/Fußball-Icon.png" class="brand" height="20" alt=""/>
             </span>
-            <a href="#/home_view" class=" navbar-text"  ng-controller="HomeViewController" ><strong>{{appTitle}}</strong></a>
+            <a href="#/home_view" class=" navbar-text"  ><strong>{{appTitle}}</strong></a>
 
         </div>
         <div class="collapse navbar-collapse "  id="myNavbar" ng-controller="SetTabActiveController">
@@ -31,8 +31,9 @@
                 <li ng-class="{activeTab:isActive('/kO_view')}"><a href="#">Page 3</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li ng-class="{activeTab:isActive('/register_view')}"><a href="#/register_view"><span class="glyphicon glyphicon-user"></span> Registrieren</a></li>
-                <li ng-class="{activeTab:isActive('/login_view')}"><a href="#/login_view"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                <li ng-class="{activeTab:isActive('/register_view')}"><a href="#/register_view" ng-show="!isLoggedIn"><span class="glyphicon glyphicon-user"></span> Registrieren</a></li>
+                <li ng-class="{activeTab:isActive('/login_view')}"><a href="#/login_view" ng-show="!isLoggedIn"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                <li ng-class="{activeTab:isActive('/welcome_view')}"><a href="#/welcome_view" ng-show="isLoggedIn"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
             </ul>
         </div>
         <div ></div>
