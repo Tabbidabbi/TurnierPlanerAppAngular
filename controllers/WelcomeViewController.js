@@ -6,5 +6,7 @@ app.controller("WelcomeViewController", ["$scope",'CurrenUser','$location',
 
     $scope.username = CurrenUser.getUser();
 
+
+
     }
 ]);

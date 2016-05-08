@@ -33,6 +33,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li ng-class="{activeTab:isActive('/register_view')}"><a href="#/register_view" ng-show="!isLoggedIn"><span class="glyphicon glyphicon-user"></span> Registrieren</a></li>
                 <li ng-class="{activeTab:isActive('/login_view')}"><a href="#/login_view" ng-show="!isLoggedIn"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                <li><span class="navbar-text" ng-show="isLoggedIn">Eingeloggt als {{username}}</span></li>
                 <li ng-class="{activeTab:isActive('/welcome_view')}"><a href="#/welcome_view" ng-show="isLoggedIn"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
             </ul>
         </div>

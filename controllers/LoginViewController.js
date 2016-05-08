@@ -59,7 +59,10 @@ app.controller('LoginViewController',['$scope','$firebaseAuth','$location','Curr
                 console.log('Authentication successful');
                 $rootScope.isLoggedIn = true;
                 CurrenUser.setUser(username);
+                $rootScope.username = username;
+
                 $location.path('/submitForm/Geklappt/Sie wurden erfolgreich angemeldet!/welcome_view');
+
 
 
 
