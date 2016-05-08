@@ -76,7 +76,7 @@ app.controller("RegisterViewController", ["$scope", "Auth",'$location',
                 $location.path('/submitForm/Gespeichert!/Benutzer erfolgreich angelegt!/login_view');
 
             }).catch(function(error) {
-                $scope.error = error;
+                $scope.error = "Email wird bereits verwendet!";
             });
         };
 
