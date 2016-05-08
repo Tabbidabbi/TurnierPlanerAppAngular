@@ -22,7 +22,7 @@ app.controller('CreateTournamentController', ['$scope', '$location', '$routePara
             $scope.changeTournamentMixResults();
         }
 
-        var td = localStorage.getItem('tournamentData');
+        var td = localStorage.getItem('tournamentData');
         $scope.savedTournaments = [];
        if(td != null) {
            if (td[0] != null) {
@@ -49,7 +49,7 @@ app.controller('CreateTournamentController', ['$scope', '$location', '$routePara
 
     $scope.init = function () {
         if($scope.isEditMode) {
-            var data  = JSON.parse(localStorage.getItem('tournamentData'));
+            var data  = JSON.parse(localStorage.getItem('tournamentData'));
             $scope.fields = data[$routeParams.tournamentIndex];
             $scope.newTournamentHeader = "Turnier bearbeiten";
             $scope.submitBtnTxt = "Speichern";
