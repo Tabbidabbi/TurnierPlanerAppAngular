@@ -83,13 +83,14 @@ app.controller('CreateTournamentController', ['$scope', '$location', '$routePara
                 }]};
 
             $scope.fields.resultsKO = {groups: [
+                {phase: 1, results: [
                 {id:1, name: "Gruppe 1", teams: [
                 {id: 1, name: "Team 1", win: 0, loose: 0},
                 {id: 1, name: "Team 2", win: 0, loose: 0}]},
 
                 {id:1, name: "Gruppe 2", teams: [
                     {id: 1, name: "Team 3", win: 0, loose: 0},
-                    {id: 1, name: "Team 4", win: 0, loose: 0}]}
+                    {id: 1, name: "Team 4", win: 0, loose: 0}]}]}
             ]}
 
             var i = localStorage.getItem("tournamentId");
@@ -140,6 +141,41 @@ app.controller('CreateTournamentController', ['$scope', '$location', '$routePara
                 }
             }
     };
+
+    $scope.changeTournamentKOResults = function(){
+        var teamscount = $scope.fields.count;
+        var groupscount;
+        if(teamscount % 2 != 0) {
+            teamscount++;
+        }
+        groupscount = Math.round(Math.log2(teamscount));
+
+        var teamNameCounter = 0;
+        $scope.fields.resultsKO = {groups:[]};
+        for (var i = 1; i <= groupscount; i++) {
+            $scope.fields.resultsMix.groups.push({id: i, name: "Gruppe "+i, phase: 1, teams: []});
+            for (var x = 1; x <= (teamscount / groupscount); x++) {
+                if( $scope.fields.teams[teamNameCounter]!=null) {
+                    $scope.fields.resultsMix.groups[i - 1].teams.push({
+                        id: x, name: $scope.fields.teams[teamNameCounter].name, results: {
+                            games: 0, loose: 0, even: 0, win: 0, score: 0, concede: 0, diff: 0, points: 0}});
+                    teamNameCounter++;
+                }
+            }
+        }
+
+        $scope.fields.resultsKO = {groups: [
+            {id:1, name: "Gruppe 1", teams: [
+                {id: 1, name: "Team 1", win: 0, loose: 0},
+                {id: 1, name: "Team 2", win: 0, loose: 0}]},
+
+            {id:1, name: "Gruppe 2", teams: [
+                {id: 1, name: "Team 3", win: 0, loose: 0},
+                {id: 1, name: "Team 4", win: 0, loose: 0}]}
+        ]}
+    };
+
+
 
     $scope.changedTeamCount = function () {
         var length = $scope.fields.count,
