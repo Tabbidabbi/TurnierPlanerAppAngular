@@ -21,6 +21,9 @@ app.controller('CreateTournamentController', ['$scope', '$location', '$routePara
         else if($scope.fields.type == "Mix"){
             $scope.changeTournamentMixResults();
         }
+        else if($scope.fields.type == "KO"){
+            $scope.changeTournamentKOResults();
+        }
 
         var td = localStorage.getItem('tournamentData');
         $scope.savedTournaments = [];
@@ -43,7 +46,7 @@ app.controller('CreateTournamentController', ['$scope', '$location', '$routePara
             $scope.savedTournaments.push($scope.fields);
         }
 
-        localStorage.setItem('tournamentData', JSON.stringify($scope.savedTournaments));
+        window.localStorage.setItem('tournamentData', JSON.stringify($scope.savedTournaments));
         $location.path('/submitForm/Gespeichert!/Das Turnier wurde erfolgreich angelegt!/myTournaments_view');
     };
 
@@ -62,12 +65,9 @@ app.controller('CreateTournamentController', ['$scope', '$location', '$routePara
             };
             $scope.fields.teams = [{id:1, name:"Team 1"},{id:2, name:"Team 2"},{id:3, name:"Team 3"}];
             $scope.fields.resultsRoundRobin = {groups:[
-                {home:1, guest: 2, score: 0, result: "even"},
-                {home:1, guest: 3, score: 0, result: "even"},
-                {home:2, guest: 1, score: 0, result: "even"},
-                {home:2, guest: 3, score: 0, result: "even"},
-                {home:3, guest: 1, score: 0, result: "even"},
-                {home:3, guest: 2, score: 0, result: "even"}]};
+                {home:1, guest: 2, scoreHome: 0, scoreGuest: 0, result: "even"},
+                {home:1, guest: 3, scoreHome: 0, scoreGuest: 0, result: "even"},
+                {home:2, guest: 3, scoreHome: 0, scoreGuest: 0, result: "even"}]};
 
             $scope.fields.resultsMix = {groups: [
                 {id: 1, name: "Gruppe A", teams: [
@@ -86,11 +86,11 @@ app.controller('CreateTournamentController', ['$scope', '$location', '$routePara
                 {phase: 1, results: [
                 {id:1, name: "Gruppe 1", teams: [
                 {id: 1, name: "Team 1", win: 0, loose: 0},
-                {id: 1, name: "Team 2", win: 0, loose: 0}]},
+                {id: 2, name: "Team 2", win: 0, loose: 0}]},
 
                 {id:1, name: "Gruppe 2", teams: [
                     {id: 1, name: "Team 3", win: 0, loose: 0},
-                    {id: 1, name: "Team 4", win: 0, loose: 0}]}]}
+                    {id: 2, name: "Team 4", win: 0, loose: 0}]}]}
             ]}
 
             var i = localStorage.getItem("tournamentId");
@@ -111,9 +111,9 @@ app.controller('CreateTournamentController', ['$scope', '$location', '$routePara
     $scope.changeTournamentRoundRobinResults = function(){
         $scope.fields.resultsRoundRobin = {groups:[]};
         for (var i = 1; i <= $scope.fields.count; i++) {
-            for(var x = 1; x <= $scope.fields.count; x++) {
+            for(var x = i; x <= $scope.fields.count; x++) {
                 if(i != x){
-                    $scope.fields.resultsRoundRobin.groups.push({home: i, guest: x, score: 0, result: "even"});
+                    $scope.fields.resultsRoundRobin.groups.push({home: i, guest: x, scoreHome: 0, scoreGuest:0, result: "even"});
                 }
             }
         }
@@ -134,8 +134,9 @@ app.controller('CreateTournamentController', ['$scope', '$location', '$routePara
                 for (var x = 1; x <= (teamscount / groupscount); x++) {
                    if( $scope.fields.teams[teamNameCounter]!=null) {
                        $scope.fields.resultsMix.groups[i - 1].teams.push({
+                           phase: 1, results: [{
                            id: x, name: $scope.fields.teams[teamNameCounter].name, results: {
-                               games: 0, loose: 0, even: 0, win: 0, score: 0, concede: 0, diff: 0, points: 0}});
+                               games: 0, loose: 0, even: 0, win: 0, score: 0, concede: 0, diff: 0, points: 0}}]});
                        teamNameCounter++;
                    }
                 }
@@ -153,26 +154,15 @@ app.controller('CreateTournamentController', ['$scope', '$location', '$routePara
         var teamNameCounter = 0;
         $scope.fields.resultsKO = {groups:[]};
         for (var i = 1; i <= groupscount; i++) {
-            $scope.fields.resultsMix.groups.push({id: i, name: "Gruppe "+i, phase: 1, teams: []});
+            $scope.fields.resultsKO.groups.push({id: i, name: "Gruppe "+i, phase: 1, teams: []});
             for (var x = 1; x <= (teamscount / groupscount); x++) {
-                if( $scope.fields.teams[teamNameCounter]!=null) {
-                    $scope.fields.resultsMix.groups[i - 1].teams.push({
-                        id: x, name: $scope.fields.teams[teamNameCounter].name, results: {
-                            games: 0, loose: 0, even: 0, win: 0, score: 0, concede: 0, diff: 0, points: 0}});
+                if($scope.fields.teams[teamNameCounter]!=null) {
+                    $scope.fields.resultsKO.groups[i - 1].teams.push({
+                        id: x, name: $scope.fields.teams[teamNameCounter].name, win: 0, loose: 0});
                     teamNameCounter++;
                 }
             }
         }
-
-        $scope.fields.resultsKO = {groups: [
-            {id:1, name: "Gruppe 1", teams: [
-                {id: 1, name: "Team 1", win: 0, loose: 0},
-                {id: 1, name: "Team 2", win: 0, loose: 0}]},
-
-            {id:1, name: "Gruppe 2", teams: [
-                {id: 1, name: "Team 3", win: 0, loose: 0},
-                {id: 1, name: "Team 4", win: 0, loose: 0}]}
-        ]}
     };
 
 
