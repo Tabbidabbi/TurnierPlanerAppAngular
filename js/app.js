@@ -61,7 +61,10 @@ app.controller('SetTabActiveController', function($scope, $location) {
 app.controller('MainController', ['$scope','$rootScope','CurrenUser', function($scope,$rootScope,CurrenUser) {
     $scope.appTitle = "Turnier Planer App";
     $rootScope.isLoggedIn = false;
-    $rootScope.username = "";
+    $scope.currentUser = CurrenUser;
+    $scope.currentUser = CurrenUser;
+    $scope.currentUser = CurrenUser;
+    $scope.currentUser = CurrenUser;
 
 
 

@@ -25,6 +25,10 @@ app.controller('CreateTournamentController', ['$scope', '$location', '$routePara
             $scope.changeTournamentKOResults();
         }
 
+
+
+
+
         var td = localStorage.getItem('tournamentData');
         $scope.savedTournaments = [];
        if(td != null) {
@@ -44,6 +48,8 @@ app.controller('CreateTournamentController', ['$scope', '$location', '$routePara
         //Neue Daten hinzufügen
         else {
             $scope.savedTournaments.push($scope.fields);
+
+
         }
 
         window.localStorage.setItem('tournamentData', JSON.stringify($scope.savedTournaments));

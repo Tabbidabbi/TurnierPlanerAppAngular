@@ -61,6 +61,7 @@
 app.controller("RegisterViewController", ["$scope", "Auth",'$location','$timeout',
     function($scope, Auth,$location,$timeout) {
         $scope.createUser = function() {
+
             $scope.message = null;
             $scope.error = null;
 
