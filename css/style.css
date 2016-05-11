@@ -1,6 +1,9 @@
-/*.navbar-fixed-top {*/
-    /*height: 70px; /!* Whatever you want. *!/*/
-/*}*/
+.container-style {
+    padding-top: 70px; /* Whatever you want. */
+}
+.navbar-fixed-top {
+    height: 70px; /* Whatever you want. */
+}
 
 /*body {*/
     /*padding-top: 65px;*/
